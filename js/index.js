@@ -261,7 +261,9 @@ function groupAndEmergencyShow(i) {
 }
 
 function addStarButton(){
+    //عندي اكثر من كارد وكل كارد فيها ستار 
     var star = document.querySelectorAll(".star-icon");
+   // اللفة عشان نربط event لكل أيقونة
     for (let i = 0; i < star.length; i++) {
         star[i].addEventListener("click", function () {
             contactList[i].favorite = !contactList[i].favorite;
@@ -319,6 +321,7 @@ function deleteContact(deletedIdx){
         confirmButtonText: 'Yes, delete it!',
         cancelButtonText: 'Cancel'
     }).then((result) => {
+        //عني المستخدم ضغط Yes
         if (result.isConfirmed) {
             contactList.splice(deletedIdx, 1);
             addContactToLocalStorage();
@@ -524,6 +527,8 @@ function searchContacts(element) {
             contactList[i].phoneNumber.includes(searchValue) ||
             contactList[i].email.toLowerCase().includes(searchValue)
         ) {
+            //جسر أمان بين العرض المؤقت (search) والمصدر الحقيقي (contactList)
+            //خليني أحتفظ بالاندكس الحقيقي
             contactList[i].realIndex = i;
             matchedResult.push(contactList[i]);
         }
