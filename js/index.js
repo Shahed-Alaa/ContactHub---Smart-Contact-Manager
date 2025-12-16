@@ -76,15 +76,17 @@ function addContact() {
        displayContact(contactList);
        bootstrap.Modal.getInstance(addContactModal).hide();
        clearForm();
+       
+               Swal.fire({
+               icon: 'success',
+               title: 'Added!',
+               text: 'Contact has been added successfully.',
+               timer: 1500,
+               showConfirmButton: false
+               });
     }
 
-    Swal.fire({
-    icon: 'success',
-    title: 'Added!',
-    text: 'Contact has been added successfully.',
-    timer: 1500,
-    showConfirmButton: false
-    });
+   
 }
 
 function emptyStateShow(){
@@ -470,9 +472,10 @@ function updateContact(){
 function validateFormInputs(element) {
 
     var regex = {      
-        fullName: /^[A-Za-z\s]{2,50}$/,
-        phoneNumber: /^(02|\+2)?01[0-25]\d{8}$/,
-        emailAddress: /^[A-Za-z][A-Za-z0-9]{9,11}(@){1}(hotmail|gmail)\.(com)$/,
+        fullName: /^[A-Za-z].{3,52}$/,
+        // phoneNumber: /^(02|\+2)?01[0-25]\d{8}$/,
+        phoneNumber :/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/,
+        emailAddress: /^[A-Za-z][A-Za-z0-9]{7,11}(@){1}(hotmail|gmail)\.(com)$/,
     }; 
 
     var isvalid = regex[element.id].test(element.value);
